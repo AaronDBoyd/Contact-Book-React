@@ -7,9 +7,9 @@ function ContactDetail(props) {
   return (
     <React.Fragment>
       <h1>- Contact Detail -</h1>
-      <h3>{contact.name}</h3>
-      <h4>{contact.phone}</h4>
-      <h4>{contact.email}</h4>
+      <h3>Name: {contact.name}</h3>
+      <h4>Phone: {contact.phone}</h4>
+      <h4>Email: {contact.email}</h4>
       <hr/>
     </React.Fragment>
   )

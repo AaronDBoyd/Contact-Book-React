@@ -8,10 +8,12 @@ export default function ContactList(props) {
     <React.Fragment>
       {props.contactList.map((contact, index) => (
         <Contact
+          whenContactClicked = { props.onContactSelection }
           name={contact.name}
           phone={contact.phone}
           email={contact.email}
-          key={index}
+          id= {contact.id}
+          key={contact.id}
         />
       ))}
     </React.Fragment>
@@ -19,5 +21,6 @@ export default function ContactList(props) {
 }
 
 ContactList.propTypes = {
-  ticketList: PropTypes.array
+  ticketList: PropTypes.array,
+  onContactSelection: PropTypes.func
 };

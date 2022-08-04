@@ -17,10 +17,19 @@ export default class ContactControl extends Component {
   }
 
   handleClick = () => {
-    this.setState(prevState => ({
-      formVisibleOnPage: !prevState.formVisibleOnPage
-    }));
-  }
+      if (this.state<selectedContact != null) {
+        this.setState({
+          formVisibleOnPage: false,
+          selectedContact: null,
+          editing: false
+        });
+      } else {
+        this.setState(prevState => ({
+          formVisableOnPage: !prevState.formVisableOnPage
+        }))
+      }
+    };
+  
 
   handleAddingNewContactToList = (newContact) => {
     const newMainContactList = this.state.mainContactList.concat(newContact);
@@ -30,15 +39,24 @@ export default class ContactControl extends Component {
     });
   };
 
+  handleChangingSelectedContact = (id) => {
+    const selectedContact = this.state.mainContactList.filter(contact => contact.id === id)[0];
+    this.setState({selectedContact: selectedContact});
+  }
+
   render() {
     let currentlyVisibleState = null;
     let buttonText = null;
 
-    if (this.state.formVisibleOnPage) {
+    if (this.state.selectedContact != null) {
+      currentlyVisibleState = < ContactDetail contact = {this.state.selectedContact} />
+      buttonText= "View Contact List";
+    } else if (this.state.formVisibleOnPage) {
       currentlyVisibleState = <NewContactForm onNewContactCreation={this.handleAddingNewContactToList} />;
       buttonText= "View Contact List";
     } else { 
-      currentlyVisibleState = <ContactList contactList={this.state.mainContactList} />;
+      currentlyVisibleState = <ContactList contactList={this.state.mainContactList}
+                                onContactSelection={this.handleChangingSelectedContact} />;
       buttonText = "Add New Contact"
     }
 
