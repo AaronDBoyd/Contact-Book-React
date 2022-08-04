@@ -1,5 +1,6 @@
 import React from "react";
 import Contact from "./Contact";
+import PropTypes from 'prop-types';
 
 const tempContactList = [
   {
@@ -19,10 +20,10 @@ const tempContactList = [
   },
 ];
 
-export default function ContactList() {
+export default function ContactList(props) {
   return (
     <React.Fragment>
-      {tempContactList.map((contact, index) => (
+      {props.contactList.map((contact, index) => (
         <Contact
           name={contact.name}
           phone={contact.phone}
@@ -33,3 +34,7 @@ export default function ContactList() {
     </React.Fragment>
   );
 }
+
+ContactList.propTypes = {
+  ticketList: PropTypes.array
+};

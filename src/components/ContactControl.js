@@ -37,7 +37,7 @@ export default class ContactControl extends Component {
       currentlyVisibleState = <NewContactForm onNewContactCreation={this.handleAddingNewContactToList} />;
       buttonText= "View Contact List";
     } else { 
-      currentlyVisibleState = <ContactList />;
+      currentlyVisibleState = <ContactList contactList={this.state.mainContactList} />;
       buttonText = "Add New Contact"
     }
 
