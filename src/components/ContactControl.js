@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import ContactList from './ContactList'
 import NewContactForm from './NewContactForm';
+import ContactDetail from './ContactDetail'
 
 export default class ContactControl extends Component {
 
