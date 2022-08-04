@@ -1,3 +1,13 @@
+# Address Book React
+
+This project uses the concepts and lessons from learnhowtoprogram.com as a template to build an address book in the react framework. This address book has full CRUD functionality.
+---
+
+# Component Tree
+
+![Component Tree](AddressBookDiagram.drawio.png)
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
