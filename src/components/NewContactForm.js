@@ -1,7 +1,10 @@
 import React from 'react'
+import ReusableForm from './ReusableForm'
 
 export default function NewContactForm() {
   return (
-    <div>NewContactForm</div>
+    <React.Fragment>
+      <ReusableForm />
+    </React.Fragment>
   )
 }

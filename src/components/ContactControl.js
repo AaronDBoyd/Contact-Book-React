@@ -23,17 +23,21 @@ export default class ContactControl extends Component {
 
   render() {
     let currentlyVisibleState = null;
+    let buttonText = null;
+
     if (this.state.formVisibleOnPage) {
-      currentlyVisibleState = <NewContactForm />
+      currentlyVisibleState = <NewContactForm />;
+      buttonText= "View Contact List";
     } else { 
-      currentlyVisibleState = <ContactList />
+      currentlyVisibleState = <ContactList />;
+      buttonText = "Add New Contact"
     }
 
 
     return (
       <React.Fragment>
         {currentlyVisibleState}
-        <button onClick={this.handleClick}>Button</button>
+        <button onClick={this.handleClick}>{buttonText}</button>
       </React.Fragment>
     )
   }
