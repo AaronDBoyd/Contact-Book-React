@@ -21,12 +21,20 @@ export default class ContactControl extends Component {
     }));
   }
 
+  handleAddingNewContactToList = (newContact) => {
+    const newMainContactList = this.state.mainContactList.concat(newContact);
+    this.setState({
+      mainContactList: newMainContactList,
+      formVisibleOnPage: false
+    });
+  };
+
   render() {
     let currentlyVisibleState = null;
     let buttonText = null;
 
     if (this.state.formVisibleOnPage) {
-      currentlyVisibleState = <NewContactForm />;
+      currentlyVisibleState = <NewContactForm onNewContactCreation={this.handleAddingNewContactToList} />;
       buttonText= "View Contact List";
     } else { 
       currentlyVisibleState = <ContactList />;
