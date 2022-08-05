@@ -2,13 +2,14 @@ import React, { Component } from 'react'
 import ContactList from './ContactList'
 import NewContactForm from './NewContactForm';
 import ContactDetail from './ContactDetail'
+import EditContactForm from './EditContactForm'
 
 export default class ContactControl extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      formVisableOnPage: false,
+      formVisibleOnPage: false,
       count: 0,
       mainContactList: [],
       selectedContact: null,
@@ -17,7 +18,7 @@ export default class ContactControl extends Component {
   }
 
   handleClick = () => {
-      if (this.state<selectedContact != null) {
+      if (this.state.selectedContact != null) {
         this.setState({
           formVisibleOnPage: false,
           selectedContact: null,
@@ -25,7 +26,7 @@ export default class ContactControl extends Component {
         });
       } else {
         this.setState(prevState => ({
-          formVisableOnPage: !prevState.formVisableOnPage
+          formVisibleOnPage: !prevState.formVisableOnPage
         }))
       }
     };
@@ -44,12 +45,21 @@ export default class ContactControl extends Component {
     this.setState({selectedContact: selectedContact});
   }
 
+  handleDeletingContact = (id) => {
+    const newMainContactList = this.state.mainContactList.filter(contact => contact.id !== id);
+    this.setState({
+      mainContactList: newMainContactList,
+      selectedContact: null
+    });
+  }
+
   render() {
     let currentlyVisibleState = null;
     let buttonText = null;
 
     if (this.state.selectedContact != null) {
-      currentlyVisibleState = < ContactDetail contact = {this.state.selectedContact} />
+      currentlyVisibleState = < ContactDetail contact = {this.state.selectedContact} 
+                                    onClickingDelete = {this.handleDeletingContact} />
       buttonText= "View Contact List";
     } else if (this.state.formVisibleOnPage) {
       currentlyVisibleState = <NewContactForm onNewContactCreation={this.handleAddingNewContactToList} />;

@@ -10,6 +10,7 @@ function ContactDetail(props) {
       <h3>Name: {contact.name}</h3>
       <h4>Phone: {contact.phone}</h4>
       <h4>Email: {contact.email}</h4>
+      <button onClick={()=> onClickingDelete(contact.id) }>Delete Contact</button>
       <hr/>
     </React.Fragment>
   )
