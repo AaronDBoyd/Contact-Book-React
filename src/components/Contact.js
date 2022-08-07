@@ -18,7 +18,7 @@ Contact.propTypes = {
   phone: PropTypes.string,
   email: PropTypes.string,
   id: PropTypes.string,
-  whenContactClicked: PropTypes.func
+  whenContactClicked: PropTypes.func,
 };
 
 export default Contact
