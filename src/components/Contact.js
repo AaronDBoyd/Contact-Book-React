@@ -13,6 +13,12 @@ function Contact(props) {
   )
 }
 
-Contact.propTypes = {}
+Contact.propTypes = {
+  name: PropTypes.string,
+  phone: PropTypes.string,
+  email: PropTypes.string,
+  id: PropTypes.string,
+  whenContactClicked: PropTypes.func
+};
 
 export default Contact
