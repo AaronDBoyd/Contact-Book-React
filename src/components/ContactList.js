@@ -21,6 +21,6 @@ export default function ContactList(props) {
 }
 
 ContactList.propTypes = {
-  ticketList: PropTypes.array,
+  contactList: PropTypes.array,
   onContactSelection: PropTypes.func
 };
