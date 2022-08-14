@@ -10,6 +10,10 @@ const reducer = (state = {}, action) => {
           id: id,
         },
       });
+    case "DELETE_CONTACT":
+      let newState = { ...state };
+      delete newState[id];
+      return newState;  
     default:
       return state;
   }
