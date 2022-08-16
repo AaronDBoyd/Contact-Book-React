@@ -9,9 +9,9 @@ import PropTypes from "prop-types";
 class ContactControl extends Component {
   constructor(props) {
     super(props);
-    console.log(props);
+    // console.log(props);
     this.state = {
-      formVisibleOnPage: false,
+      // formVisibleOnPage: false,
       // count: 0,
       // mainContactList: [],
       selectedContact: null,
@@ -22,14 +22,19 @@ class ContactControl extends Component {
   handleClick = () => {
     if (this.state.selectedContact != null) {
       this.setState({
-        formVisibleOnPage: false,
+        // formVisibleOnPage: false,
         selectedContact: null,
         editing: false,
       });
     } else {
-      this.setState((prevState) => ({
-        formVisibleOnPage: !prevState.formVisableOnPage,
-      }));
+      const { dispatch } = this.props;
+      const action = {
+        type: 'TOGGLE_FORM'
+      }
+      dispatch(action);
+      // this.setState((prevState) => ({
+      //   formVisibleOnPage: !prevState.formVisableOnPage,
+      // }));
     }
   };
 
@@ -44,11 +49,16 @@ class ContactControl extends Component {
       email: email
     }
     dispatch(action);
+
+    const action2 = {
+      type: "TOGGLE_FORM"
+    }
+    dispatch(action2);
     // const newMainContactList = this.state.mainContactList.concat(newContact);
-    this.setState({
-      // mainContactList: newMainContactList,
-      formVisibleOnPage: false,
-    });
+    // this.setState({
+    //   // mainContactList: newMainContactList,
+    //   formVisibleOnPage: false,
+    // });
   };
 
   handleChangingSelectedContact = (id) => {
@@ -117,7 +127,7 @@ class ContactControl extends Component {
         />
       );
       buttonText = "View Contact List";
-    } else if (this.state.formVisibleOnPage) {
+    } else if (this.props.formVisibleOnPage) {
       currentlyVisibleState = (
         <NewContactForm
           onNewContactCreation={this.handleAddingNewContactToList}
@@ -143,12 +153,14 @@ class ContactControl extends Component {
   }
 }
 ContactControl.propTypes = {
-  mainContactList: PropTypes.object
+  mainContactList: PropTypes.object,
+  formVisibleOnPage: PropTypes.bool
 }
 
 const mapStateToProps = state => {
   return {
-    mainContactList: state
+    mainContactList: state.mainContactList,
+    formVisibleOnPage: state.formVisibleOnPage
   }
 }
 
