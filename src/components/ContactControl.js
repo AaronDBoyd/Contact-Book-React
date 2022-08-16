@@ -3,14 +3,16 @@ import ContactList from "./ContactList";
 import NewContactForm from "./NewContactForm";
 import ContactDetail from "./ContactDetail";
 import EditContactForm from "./EditContactForm";
+import { connect } from 'react-redux';
 
-export default class ContactControl extends Component {
+class ContactControl extends Component {
   constructor(props) {
     super(props);
+    console.log(props);
     this.state = {
       formVisibleOnPage: false,
-      count: 0,
-      mainContactList: [],
+      // count: 0,
+      // mainContactList: [],
       selectedContact: null,
       editing: false,
     };
@@ -31,9 +33,19 @@ export default class ContactControl extends Component {
   };
 
   handleAddingNewContactToList = (newContact) => {
-    const newMainContactList = this.state.mainContactList.concat(newContact);
+    const { dispatch } = this.props;
+    const { id, name, phone, email } = newContact;
+    const action = {
+      type: 'ADD_CONTACT',
+      id: id,
+      name: name,
+      phone: phone,
+      email: email
+    }
+    dispatch(action);
+    // const newMainContactList = this.state.mainContactList.concat(newContact);
     this.setState({
-      mainContactList: newMainContactList,
+      // mainContactList: newMainContactList,
       formVisibleOnPage: false,
     });
   };
@@ -46,11 +58,17 @@ export default class ContactControl extends Component {
   };
 
   handleDeletingContact = (id) => {
-    const newMainContactList = this.state.mainContactList.filter(
-      (contact) => contact.id !== id
-    );
+    const { dispatch } = this.props;
+    const action = {
+      type: 'DELETE_CONTACT',
+      id: id
+    }
+    dispatch(action);
+    // const newMainContactList = this.state.mainContactList.filter(
+    //   (contact) => contact.id !== id
+    // );
     this.setState({
-      mainContactList: newMainContactList,
+      // mainContactList: newMainContactList,
       selectedContact: null,
     });
   };
@@ -60,11 +78,21 @@ export default class ContactControl extends Component {
   };
 
   handleEditingContactInList = (contactToEdit) => {
-    const editedMainContactList = this.state.mainContactList
-      .filter((contact) => contact.id !== this.state.selectedContact.id)
-      .concat(contactToEdit);
+    const { dispatch } = this.props;
+    const { id, name, price, email } = contactToEdit;
+    const action = {
+      type: 'ADD_CONTACT',
+      id: id,
+      name: name,
+      phone: phone,
+      email: email
+    }
+    dispatch(action)
+    // const editedMainContactList = this.state.mainContactList
+    //   .filter((contact) => contact.id !== this.state.selectedContact.id)
+    //   .concat(contactToEdit);
     this.setState({
-      mainContactList: editedMainContactList,
+      // mainContactList: editedMainContactList,
       editing: false,
       selectedContact: null,
     });
@@ -115,3 +143,13 @@ export default class ContactControl extends Component {
     );
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    mainContactList: state
+  }
+}
+
+ContactControl = connect(mapStateToProps)(ContactControl);
+
+export default ContactControl;
