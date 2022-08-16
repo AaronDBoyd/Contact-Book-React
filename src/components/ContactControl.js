@@ -52,9 +52,7 @@ class ContactControl extends Component {
   };
 
   handleChangingSelectedContact = (id) => {
-    const selectedContact = this.state.mainContactList.filter(
-      (contact) => contact.id === id
-    )[0];
+    const selectedContact = this.props.mainContactList[id];
     this.setState({ selectedContact: selectedContact });
   };
 
@@ -80,7 +78,7 @@ class ContactControl extends Component {
 
   handleEditingContactInList = (contactToEdit) => {
     const { dispatch } = this.props;
-    const { id, name, price, email } = contactToEdit;
+    const { id, name, phone, email } = contactToEdit;
     const action = {
       type: 'ADD_CONTACT',
       id: id,
@@ -129,7 +127,7 @@ class ContactControl extends Component {
     } else {
       currentlyVisibleState = (
         <ContactList
-          contactList={this.state.mainContactList}
+          contactList={this.props.mainContactList}
           onContactSelection={this.handleChangingSelectedContact}
         />
       );

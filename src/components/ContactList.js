@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 export default function ContactList(props) {
   return (
     <React.Fragment>
-      {props.contactList.map((contact, index) => (
+      {Object.values(props.contactList).map((contact, index) => (
         <Contact
           whenContactClicked = { props.onContactSelection }
           name={contact.name}
@@ -21,6 +21,6 @@ export default function ContactList(props) {
 }
 
 ContactList.propTypes = {
-  contactList: PropTypes.array,
+  contactList: PropTypes.object,
   onContactSelection: PropTypes.func
 };
