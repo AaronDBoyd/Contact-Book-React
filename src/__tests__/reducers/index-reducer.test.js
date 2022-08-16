@@ -1,4 +1,9 @@
 import rootReducer from '../../reducers/index';
+import { createStore } from 'redux';
+import formVisibleReducer from '../../reducers/form-visible-reducer';
+import contactListReducer from '../../reducers/contact-list-reducer';
+
+let store = createStore(rootReducer);
 
 describe("rootReducer", () => {
 
@@ -9,4 +14,11 @@ describe("rootReducer", () => {
     });
   });
 
+  test('Check that initial state of contactListReducer matches root reducer', () => {
+    expect(store.getState().mainContactList).toEqual(contactListReducer(undefined, {type: null}) )
+  })
+
+  test('Check that initial state if formVisibleReducer matches root reducer', () => {
+    expect(store.getState().formVisibleOnPage).toEqual(formVisibleReducer(undefined, { type: null }))
+  })
 });
