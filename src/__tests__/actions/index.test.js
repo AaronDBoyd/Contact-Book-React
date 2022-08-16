@@ -13,4 +13,19 @@ describe("Contact Book actions", () => {
       type: 'TOGGLE_FORM'
     })
   })
+
+  it('addContact should create ADD_CONTACT action', () => {
+    expect(actions.addContact({
+      name: "Zara",
+      phone: "1345678901",
+      email: "zara@doggo.com",
+      id: 1
+    })).toEqual({
+      type: 'ADD_CONTACT',
+      name: "Zara",
+      phone: "1345678901",
+      email: 'zara@doggo.com',
+      id: 1
+    })
+  })
 })
