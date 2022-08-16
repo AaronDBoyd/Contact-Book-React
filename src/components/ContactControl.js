@@ -5,6 +5,7 @@ import ContactDetail from "./ContactDetail";
 import EditContactForm from "./EditContactForm";
 import { connect } from 'react-redux';
 import PropTypes from "prop-types";
+import * as a from './../actions';
 
 class ContactControl extends Component {
   constructor(props) {
@@ -28,9 +29,7 @@ class ContactControl extends Component {
       });
     } else {
       const { dispatch } = this.props;
-      const action = {
-        type: 'TOGGLE_FORM'
-      }
+      const action = a.toggleForm();
       dispatch(action);
       // this.setState((prevState) => ({
       //   formVisibleOnPage: !prevState.formVisableOnPage,
@@ -40,19 +39,11 @@ class ContactControl extends Component {
 
   handleAddingNewContactToList = (newContact) => {
     const { dispatch } = this.props;
-    const { id, name, phone, email } = newContact;
-    const action = {
-      type: 'ADD_CONTACT',
-      id: id,
-      name: name,
-      phone: phone,
-      email: email
-    }
+    // const { id, name, phone, email } = newContact;
+    const action = a.addContact(newContact);
     dispatch(action);
 
-    const action2 = {
-      type: "TOGGLE_FORM"
-    }
+    const action2 = a.toggleForm();
     dispatch(action2);
     // const newMainContactList = this.state.mainContactList.concat(newContact);
     // this.setState({
@@ -68,10 +59,7 @@ class ContactControl extends Component {
 
   handleDeletingContact = (id) => {
     const { dispatch } = this.props;
-    const action = {
-      type: 'DELETE_CONTACT',
-      id: id
-    }
+    const action = a.deleteContact(id);
     dispatch(action);
     // const newMainContactList = this.state.mainContactList.filter(
     //   (contact) => contact.id !== id
@@ -88,14 +76,8 @@ class ContactControl extends Component {
 
   handleEditingContactInList = (contactToEdit) => {
     const { dispatch } = this.props;
-    const { id, name, phone, email } = contactToEdit;
-    const action = {
-      type: 'ADD_CONTACT',
-      id: id,
-      name: name,
-      phone: phone,
-      email: email
-    }
+    // const { id, name, phone, email } = contactToEdit;
+    const action = a.addContact(contactToEdit);
     dispatch(action)
     // const editedMainContactList = this.state.mainContactList
     //   .filter((contact) => contact.id !== this.state.selectedContact.id)

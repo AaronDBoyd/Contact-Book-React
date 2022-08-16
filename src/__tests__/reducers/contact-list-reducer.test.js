@@ -1,4 +1,5 @@
 import contactListReducer from "../../reducers/contact-list-reducer";
+import * as c from './../../actions/ActionTypes';
 
 describe("contactListReducer", () => {
   let action;
@@ -31,7 +32,7 @@ describe("contactListReducer", () => {
   test("Should successfully add new contact data to mainContactList", () => {
     const { name, phone, email, id } = contactData;
     action = {
-      type: "ADD_CONTACT",
+      type: c.ADD_CONTACT,
       name: name,
       phone: phone,
       email: email,
@@ -50,7 +51,7 @@ describe("contactListReducer", () => {
 
   test("Should successfully delete a contact", () => {
     action = {
-      type: "DELETE_CONTACT",
+      type: c.DELETE_CONTACT,
       id: 1,
     };
     expect(contactListReducer(currentState, action)).toEqual({

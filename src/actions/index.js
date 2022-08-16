@@ -1,16 +1,18 @@
+import * as c from './ActionTypes';
+
 export const deleteContact = id => ({
-  type: 'DELETE_CONTACT',
+  type: c.DELETE_CONTACT,
   id
 });
 
 export const toggleForm = () => ({
-  type: 'TOGGLE_FORM'
+  type: c.TOGGLE_FORM
 })
 
 export const addContact = (contact) => {
   const { name, phone, email, id } = contact;
   return {
-    type: 'ADD_CONTACT',
+    type: c.ADD_CONTACT,
     name: name,
     phone: phone,
     email: email,
