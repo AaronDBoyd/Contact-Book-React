@@ -4,6 +4,7 @@ import NewContactForm from "./NewContactForm";
 import ContactDetail from "./ContactDetail";
 import EditContactForm from "./EditContactForm";
 import { connect } from 'react-redux';
+import PropTypes from "prop-types";
 
 class ContactControl extends Component {
   constructor(props) {
@@ -142,6 +143,9 @@ class ContactControl extends Component {
       </React.Fragment>
     );
   }
+}
+ContactControl.propTypes = {
+  mainContactList: PropTypes.object
 }
 
 const mapStateToProps = state => {
