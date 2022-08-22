@@ -40,11 +40,13 @@ class ContactControl extends Component {
   handleAddingNewContactToList = (newContact) => {
     const { dispatch } = this.props;
     // const { id, name, phone, email } = newContact;
-    const action = a.addContact(newContact);
-    dispatch(action);
+    // const action = a.addContact(newContact);
+    // dispatch(action);
 
     const action2 = a.toggleForm();
     dispatch(action2);
+
+    
     // const newMainContactList = this.state.mainContactList.concat(newContact);
     // this.setState({
     //   // mainContactList: newMainContactList,
