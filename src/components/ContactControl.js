@@ -6,6 +6,7 @@ import EditContactForm from "./EditContactForm";
 import { connect } from 'react-redux';
 import PropTypes from "prop-types";
 import * as a from './../actions';
+import { withFirestore } from 'react-redux-firebase';
 
 class ContactControl extends Component {
   constructor(props) {
@@ -55,8 +56,15 @@ class ContactControl extends Component {
   };
 
   handleChangingSelectedContact = (id) => {
-    const selectedContact = this.props.mainContactList[id];
-    this.setState({ selectedContact: selectedContact });
+    this.props.firestore.get({collection: 'contacts', doc: id}).then((contact) => {
+      const firestoreContact = {
+        name: contact.get("name"),
+        phone: contact.get("phone"),
+        email: contact.get("email"),
+        id: contact.id
+      }
+    this.setState({ selectedContact: firestoreContact });
+    })
   };
 
   handleDeletingContact = (id) => {
@@ -77,10 +85,10 @@ class ContactControl extends Component {
   };
 
   handleEditingContactInList = (contactToEdit) => {
-    const { dispatch } = this.props;
-    // const { id, name, phone, email } = contactToEdit;
-    const action = a.addContact(contactToEdit);
-    dispatch(action)
+    // const { dispatch } = this.props;
+    // // const { id, name, phone, email } = contactToEdit;
+    // const action = a.addContact(contactToEdit);
+    // dispatch(action)
     // const editedMainContactList = this.state.mainContactList
     //   .filter((contact) => contact.id !== this.state.selectedContact.id)
     //   .concat(contactToEdit);
@@ -150,4 +158,4 @@ const mapStateToProps = state => {
 
 ContactControl = connect(mapStateToProps)(ContactControl);
 
-export default ContactControl;
+export default withFirestore(ContactControl);
