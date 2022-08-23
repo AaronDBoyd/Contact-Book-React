@@ -7,7 +7,8 @@ import { useFirestoreConnect, isLoaded, isEmpty } from "react-redux-firebase";
 export default function ContactList(props) {
   useFirestoreConnect([{ collection: "contacts" }]);
 
-  const contacts = useSelector((state) => state.firestore.ordered.contacts);
+  // const contacts = useSelector((state) => state.firestore.ordered.contacts);
+  const contacts = useSelector((state) => state.ordered.contacts);
 
   if (isLoaded(contacts)) {
     return (

@@ -5,7 +5,7 @@ import ContactDetail from "./ContactDetail";
 import EditContactForm from "./EditContactForm";
 import { connect } from 'react-redux';
 import PropTypes from "prop-types";
-import * as a from './../actions';
+// import * as a from './../actions';
 import { withFirestore } from 'react-redux-firebase';
 
 class ContactControl extends Component {
@@ -13,7 +13,7 @@ class ContactControl extends Component {
     super(props);
     // console.log(props);
     this.state = {
-      // formVisibleOnPage: false,
+      formVisibleOnPage: false,
       // count: 0,
       // mainContactList: [],
       selectedContact: null,
@@ -24,35 +24,35 @@ class ContactControl extends Component {
   handleClick = () => {
     if (this.state.selectedContact != null) {
       this.setState({
-        // formVisibleOnPage: false,
+        formVisibleOnPage: false,
         selectedContact: null,
         editing: false,
       });
     } else {
-      const { dispatch } = this.props;
-      const action = a.toggleForm();
-      dispatch(action);
-      // this.setState((prevState) => ({
-      //   formVisibleOnPage: !prevState.formVisableOnPage,
-      // }));
+      // const { dispatch } = this.props;
+      // const action = a.toggleForm();
+      // dispatch(action);
+      this.setState((prevState) => ({
+        formVisibleOnPage: !prevState.formVisibleOnPage,
+      }));
     }
   };
 
   handleAddingNewContactToList = (newContact) => {
-    const { dispatch } = this.props;
-    // const { id, name, phone, email } = newContact;
-    // const action = a.addContact(newContact);
-    // dispatch(action);
+    // const { dispatch } = this.props;
+    // // const { id, name, phone, email } = newContact;
+    // // const action = a.addContact(newContact);
+    // // dispatch(action);
 
-    const action2 = a.toggleForm();
-    dispatch(action2);
+    // const action2 = a.toggleForm();
+    // dispatch(action2);
 
     
     // const newMainContactList = this.state.mainContactList.concat(newContact);
-    // this.setState({
-    //   // mainContactList: newMainContactList,
-    //   formVisibleOnPage: false,
-    // });
+    this.setState({
+      // mainContactList: newMainContactList,
+      formVisibleOnPage: false,
+    });
   };
 
   handleChangingSelectedContact = (id) => {
@@ -120,7 +120,8 @@ class ContactControl extends Component {
         />
       );
       buttonText = "View Contact List";
-    } else if (this.props.formVisibleOnPage) {
+    // } else if (this.props.formVisibleOnPage) {
+    } else if (this.state.formVisibleOnPage) {
       currentlyVisibleState = (
         <NewContactForm
           onNewContactCreation={this.handleAddingNewContactToList}
@@ -130,7 +131,7 @@ class ContactControl extends Component {
     } else {
       currentlyVisibleState = (
         <ContactList
-          contactList={this.props.mainContactList}
+          // contactList={this.props.mainContactList}
           onContactSelection={this.handleChangingSelectedContact}
         />
       );
