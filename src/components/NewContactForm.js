@@ -12,13 +12,15 @@ export default function NewContactForm(props) {
     event.preventDefault();
 
     props.onNewContactCreation();
+    
 
     return firestore.collection('contacts').add(
       {
         name: event.target.name.value,
         phone: event.target.phone.value,
         email: event.target.email.value,
-        timeOpen: firestore.FieldValue.serverTimestamp()
+        // timeOpen: firestore.FieldValue.serverTimestamp()
+        timeOpen: new Date().toDateString()
       }
     )
   }

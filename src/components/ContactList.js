@@ -13,12 +13,15 @@ export default function ContactList(props) {
   if (isLoaded(contacts)) {
     return (
       <React.Fragment>
+        {console.log(contacts[0])}
         {contacts.map((contact) => (
+          
           <Contact
             whenContactClicked={props.onContactSelection}
             name={contact.name}
             phone={contact.phone}
             email={contact.email}
+            timeOpen={contact.timeOpen}
             id={contact.id}
             key={contact.id}
           />
