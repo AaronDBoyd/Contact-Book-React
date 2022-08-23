@@ -68,12 +68,13 @@ class ContactControl extends Component {
   };
 
   handleDeletingContact = (id) => {
-    const { dispatch } = this.props;
-    const action = a.deleteContact(id);
-    dispatch(action);
+    // const { dispatch } = this.props;
+    // const action = a.deleteContact(id);
+    // dispatch(action);
     // const newMainContactList = this.state.mainContactList.filter(
     //   (contact) => contact.id !== id
     // );
+    this.props.firestore.delete({collection: 'contacts', doc: id});
     this.setState({
       // mainContactList: newMainContactList,
       selectedContact: null,
